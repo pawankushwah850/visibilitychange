@@ -50,12 +50,12 @@
 
         /* ################################################################# */
 
-        var visible_page,hidden_page;
+        var visibilityChange,hidden;
 
         //error handling
          if ( typeof document.hidden_page!== "undefined"){
-             visible_page="visible";
-             hidden_page="visibilitychange";
+             visibilityChange="visible";
+             hidden="visibilitychange";
          }
          else if (typeof document.msHidden !== "undefined") {
                 hidden = "msHidden";
