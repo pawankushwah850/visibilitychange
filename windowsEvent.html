@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+    
+        <div class="text-center w-100 p-2" style=" font-size:50px; font-weight: 900; color:azure; background-color: crimson; font-family: sans-serif ">
+            Window resize <span id="count"> 0</span> times <br>
+            Default your windows width and height is (<span id="width">0px </span>, <span id="h">0px</span>)
+        </div>
+        <br>
+        <div id="page" class="text-center w-100 p-2" style=" font-size:50px; font-weight: 900; color:darkorange; background-color:darkslategrey; font-family: sans-serif ">
+            You leave this page <span id="leave">0</span> times <br>
+        </div>
+
+
+              
+
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        count=0;
+       
+        function window_resize(){
+            $('#count').html(count);
+            var w=document.documentElement.clientWidth ;
+            var h=document.documentElement.clientHeight;
+            
+            $("#width").html(w);
+            $("#h").html(h);
+            count+=1;
+        }
+     
+        window.addEventListener('resize',window_resize);
+        window_resize();
+
+        /* ################################################################# */
+
+        var visibilityChange,hidden;
+
+        //error handling
+         if ( typeof document.hidden_page!== "undefined"){
+                visibilityChange="visible";
+                hidden="visibilitychange";
+         }
+         else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+        } 
+        else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+        }
+        
+
+
+        // If the page is hidden, pause the video;
+        // if the page is shown, play the video
+        cont=0;
+        function handleVisibilityChange() {
+        if (document[hidden]) {
+            cont+=1;
+            $("#leave").html(cont);
+        }
+        }
+
+        // Warn if the browser doesn't support addEventListener or the Page Visibility API
+        if (typeof document.addEventListener === "undefined" || hidden === "undefined") {
+        console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+        } else {
+        // Handle page visibility change   
+        document.addEventListener(visibilityChange, handleVisibilityChange, false);
+            
+        }
+       fcount=1;
+       window.addEventListener('focus',function(){
+           if (fcount==1){
+            alert("This your last warning!.");
+           }
+           else if (fcount==3){
+               window.location="https://makitweb.com/how-to-detect-browser-window-active-or-not-javascript/"
+           }
+         
+           fcount+=1;
+            
+       }, false);
+
+       /*window.addEventListener('blur',function(){
+           console.log("Good");
+       },false);*/
+        
+    </script>
+
+</body>
+</html>
